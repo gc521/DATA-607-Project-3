@@ -23,29 +23,52 @@ Mohammad Rahman
 
 
 # Collaboration Tools
-WhatsApp: 
-Github: Repository for code sharing and write ups for markdown file
-Zoom: For online meeting as needed
+WhatsApp: Commication/share ideas
+Github: Code sharing 
+Zoom: We use this to meet as needed. 
 
 # Project 3 Approach
 
-The goal of the project is to use data to answer the question, “Which are the most valued data science skills?”. We decided to web scrap a major job search engines (ex: Indeed, Linkedin, Glassdoor, etc) for job postings. Create a large csv that contains job title, job URL, company name, job salary, and job description. Then, we will create a list of hard skills and soft skills, and find the top 5 most frequent hard skills and soft skills on the job postings. The most valued data science skills are the skills that appear most often on the job postings. 
+The goal of the project is to use data to answer the question, “Which are the most valued data science skills?”. 
+We decided to web scrap a major job search engines (ex: Indeed, Linkedin, Glassdoor, etc) for job postings. 
+Create a large csv that contains job title, job URL, company name, job salary, and job description. 
+Then, we will create a list of hard skills and soft skills, and find the 
+top 5 most frequent hard skills and soft skills on the job postings. 
+The most valued data science skills are the skills that appear most often on the job postings. 
 
 # Data Source
 
 Plan A:
-We decided to web scrap major job search engines (Indeed, Linkedin, Glassdoor, etc). In the beginning we used the package 'rvest' on R to web scrape Indeed for job postings. However, we ran into a 403 error. There is an API restriction. So we used Parsehub and Octoparse to scrap data from the job search engine. 
+We decided to web scrap major job search engines (Indeed, Linkedin, Glassdoor, etc). In the beginning we used the package 'rvest' on R to web scrape Indeed for job postings. 
+However, we ran into a 403 error. There is an API restriction. 
+So we used Parsehub and Octoparse to scrap data from the job search engine. 
 
 https://github.com/suswong/DATA-607-Project-3
 
 Plan B: 
-Use a dataset we found on Kaggle. The dataset contains job listings in US from Glassdoor. The CSV file contains Job title, salart estimate, job description, company name, company rating, company headquarters, company size, and more. 
+If webscraping fail, we decide to use a dataset we found on Kaggle. The dataset contains job listings in US from Glassdoor. 
+The CSV file contains Job title, salart estimate, job description, company name, company rating, company headquarters, company size, and more. 
 https://www.kaggle.com/datasets/nikhilbhathi/data-scientist-salary-us-glassdoor?resource=download
-
-We plan to use the raw file compiled by _____ to do our own tidying anf analysis.
 https://github.com/PlayingNumbers/ds_salary_proj
 
-# ER Diagram 
 
-# Database Plan
+Database Plan:
+Once we aquire our data using the above mentioned tools (Plan A or Plan B), we will plan to load our data into a database instance on SQL Server. Once data is loaded into a database on SQL server into
+normalized tables, we will connect the database to R using the approriate packages/libraries. From there we load the data into a dataframe to begin tidying/analysis. An ER
+diagram is shown below, but a summary of the database model is as follows:
+
+One industry (IT, Analytics, Biotech etc..) has many positions (i.e. jobs); one position can have many skill positions; one skill can have many position skills; one skill group has 
+many skills; on job level (junior, senior, associate) can have many positon skills, one level can have many positions associated with said position; one employer can have
+many positions potenially open, one employer can have many locations; one salary (or range) can belong to many open positions; one education requirment can belong to many open poitions
+
+
+
+
+
+
+
+
+
+
+
 
