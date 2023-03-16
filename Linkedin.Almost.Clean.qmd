@@ -1,0 +1,118 @@
+---
+title: "Untitled"
+author: "Gabriel Castellanos"
+format: html
+---
+
+## Quarto
+
+```{r}
+library(dplyr)
+library(stringr) 
+library(tidyr)
+library(knitr)
+install.packages("priceR")
+install.packages("rex")
+library(priceR)
+library(rex)
+
+library(stringi)
+data <- read.csv("https://raw.githubusercontent.com/suswong/DATA-607-Project-3/main/tided_Linkedin.csv")
+```
+
+```{r, drop-columns}
+data$Keyword <- NULL
+data$Company_link <- NULL
+data$Post_time <- NULL
+data$Applicants_count <- NULL
+data$Education <- NULL
+data$Remote <- NULL
+data$R <- NULL
+data$Salaries <- NULL
+
+```
+
+```{r, str-replace}
+data <- data %>% 
+  mutate(across('Job_location_City', str_replace, 'New York', 'New York City'))
+data <- data %>% 
+  mutate(across('Job_location_City', str_replace, 'New York City City Metropolitan Area
+', 'New York City'))
+
+data$Job_location_State <- str_trim(data$Job_location_State)
+data$Desription <- str_trim(data$Desription)
+
+
+data <- data |> rename_('City' = 'Job_location_City', 'State' = 'Job_location_State', 'Link' = 'Job_link', 'Desription' = 'Job_description', 'Titile' = 'Job_title', 'Industry' = 'Job_function', 'Function' = 'Industries')
+
+```
+
+```{r, append-columns}
+
+
+
+data$Education <- sapply(data$Desription, FUN = function(x){
+  # Use base R regex functions to for conditions, and return values for new column
+  if (grepl("bachelor", tolower(x))){
+    return("Bachelor")
+  }else if (grepl("Bachelor's", tolower(x))){
+    return("Bachelor")
+  }else if (grepl("bachelor's", toupper(x))){
+    return("Bachelor")
+  }else if (grepl("master", tolower(x))){
+    return("Masters")
+  }else if (grepl("Master's", tolower(x))){
+    return("Masters")
+  }else if (grepl("PhD", tolower(x))){
+    return("Doctorate")
+  }else{
+    return("Not Stated")
+  }
+})
+
+
+
+
+data$Remote <- sapply(data$Titile, FUN = function(x){
+  
+  if (grepl("remote", tolower(x))){
+    return("Yes")
+  }else if (grepl("Remote", tolower(x))){
+    return("Yes")
+  }else{
+    return("No")
+  }
+})
+
+
+
+data$SQL <- sapply(data$Desription, FUN = function(x){
+  
+  if (grepl("SQL", tolower(x))){
+    return("Yes")
+  }else if (grepl("SQL", toupper(x))){
+    return("Yes")
+  }else{
+    return("No")
+  }
+})
+
+
+
+```
+
+```{r}
+data$Desription <- str_replace_all(data$Desription, "\\$", ' ')
+
+
+data$Salary <- str_extract_all(data$Desription, "(\\d{1,4}((\\,|\\.|\\s)(\\d00)){1,2}|(\\d{3,7}))")
+
+data <- data[!duplicated(data$Desription), ]
+
+```
+
+
+
+
+
+
