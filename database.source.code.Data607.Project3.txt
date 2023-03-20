@@ -1,0 +1,120 @@
+CREATE TABLE SKILL_GROUPS (
+SKillGROUPID int Not Null Primary Key,
+Skill_Group_Name varchar(255) Not NULL,
+);
+
+
+Insert Into SKILL_GROUPS
+values (1, 'Programming Skills'), (2, 'Non-Technicical'), (3, 'Cloud'), (4, 'AI-Statisitcs'), (5, 'Business Objects'), (6, 'Data Engineering-Big-Data');
+
+
+
+Create Table Skills (
+SkillID int Not NULL Primary Key,
+SkillName varchar(255),
+SkillGroupID int FOREIGN KEY REFERENCES SKILL_GROUPS(ID));
+
+
+
+Insert into Skills 
+values (1, 'SPSS', 5), (2, 'Stata', 5), (3, 'SAS', 1), (4, 'MATLAB', 1), (5, 'C_Sharp', 1), (6, 'C++', 1), (7, 'Swift', 1), (8, 'Julia', 1), 
+(9, 'Hadoop', 6), (10, 'Spark', 6), (11, 'Pig', 6), (12, 'Tableau', 5), (13, 'REDCap', 5), (14, 'Qualtrics', 5), (15, 'Power BI', 5), (16,  'Dedoose', 5),
+(17, 'Atlas TI', 5), (18, 'NVivo', 5), (19, 'MPlus', 5), (20, 'Mixor', 4), (21, 'dbt', 6), (22, 'BigQuery', 6), (23, 'Superset', 6), (24, 'Baseten', 4), 
+(25, 'AirFlow', 6), (26, 'ELT/ELT pipelines', 6), (27, 'Google Analytics', 4), (28, 'Parse.ly', 4), (29, 'Google Data Studio', 5), (30, 'Looker', 5), (31, 'Excel', 5),
+(32, 'Plotly', 4), (33, 'Spotfire', 4), (34, 'Smartsheet', 5), (35, 'Business Intlligence', 2), (36, 'C#.net', 5), (37, 'VBA', 1), (38,  'DevOps', 1), (39, 'Statical analysis', 4),
+(40, 'Machine Learning', 4), (41, 'data visual', 2), (42, 'wrangling', 1), (43, 'mathematics', 4), (44, 'programming', 1), (45, 'statistics', 4), (46, 'big data', 6),
+(47, 'Artifical intlligence', 4), (48, 'Deep learning', 4), (49, 'data modeling', 4), (50, 'data processing', 6), (51, 'data management', 6), (52, 'data manipulation', 1), (53, 'database', 6),
+(54, 'data architecture', 6), (55, 'data mining', 4), (56, 'research', 2), (57, 'medeling', 4), (58, 'analysis', 2), (59, 'cloud computing', 3), (60, 'Python', 1),
+(61, 'Java', 1), (62, 'JavaScript', 5), (63, 'SQL', 1), (64, 'R', 1), (65, 'Go', 1), (66, 'Kotlin', 1), (67, 'PHP', 1), (68, 'Ruby', 1), (69, 'TypeScript', 1), 
+(70, 'HTML', 1), (71, 'CSS', 1), (72, 'NOSQL', 6), (73, 'Rust', 1), (74, 'Pearl', 1), (75, 'Alteryx', 4), (76, 'communication', 2), (77, 'critical thinking', 2), 
+(78, 'problem-solving', 2), (79, 'business acumen', 2), (80, 'data-narritive', 2), (81, 'adaptability', 2), (82, 'team player', 2), (83, 'product understanding', 2),
+(84, 'innovation', 2), (85, 'collaboration', 2), (86, 'technical', 2), (87, 'visualization', 2), (88, 'attention', 2), (89, 'interpersonal', 2), (90, 'detail', 2),
+(91, 'presentation', 2), (92, 'multitask', 2), (93, 'decision-making', 2), (94, 'accuracy', 2), (95, 'organization', 2), (96, 'time management', 2);
+
+
+
+CREATE TABLE INDUSTRY (Industry_ID int NOT NULL Primary Key,
+Industry_Name varchar(255));
+
+Insert into INDUSTRY 
+values (1, 'Information Technology'), (2, 'Strategy/Planning'), (3, 'Human Resources'), (4, 'Finance'), (5, 'Enginnering'), (6, 'Administrative'),
+(7, 'Art/Creative'), (8,  'Marketing'), (9, 'Other'), (10, 'Quality Assurance'), (11, 'General Business'), (12, 'Scientific Research'), (13, 'General Research'), 
+(14, 'Customer Service'), (15, 'Education'), (16, 'Project Management'), (17, 'Health Care'), (18, 'Accounting/Auditing'), (19, 'Writing/Editing'), (20, 'Consulting'),
+(21, 'Training'), (22, 'Production'), (23, 'Legal'), (24, 'Supply Chain'), (25, 'Science'), (26, 'Manufacturing'), (27, 'Design');
+
+insert into INDUSTRY
+values (29, 'Business Intelligence'), (28, 'Biotechnology'), (30, 'Food Science');
+;
+
+
+Create table Job_Title(
+JobTitleID int not NUll Primary Key,
+Job_Function varchar(255));
+
+Insert into Job_Title
+values (1, 'Data Analyst'), (3, 'Data Scientist'), (4, 'Data Entry Operator'), (5, 'Data Insights & Visualization Specialist'), (6, 'Data Engineer'),
+(8, 'Data Entry'), (9, 'Analyst'), (10, 'Scientist'), (11, 'Data Support Specialist'), (12, 'Data Architect'), (13, 'Digital Content Creator'), (14, 'Data Reporting Analyst'),
+(15, 'Machine Learning Engineer'), (16, 'Data Manager'), (17, 'Head of Content Marketing'), (18, 'SQL Developer');
+
+
+Create table Job_Level(
+Job_Level_ID int primary key,
+Job_Level_Name varchar(255));
+
+insert into Job_level
+values (1, 'Entry level'), (2, 'Not Applicable'), (3, 'Mid-Senior level'), (4, 'Associate'), (5, 'Internship'), (6, 'Contract'), (7, 'Full-time'), (8, 'Director'), 
+(9, 'Executive');
+
+Create table Appointment_Type(
+Appointment_ID int primary key,
+Appointment_Name varchar(255));
+
+insert into Appointment_Type
+values (1, 'Remote'), (2, 'On-Site'), (3, 'Hybrid'); 
+
+create table Education( 
+
+EducationID int primary key,
+Education_Level varchar(255));
+
+Insert into Education
+values (1, 'Bachelors'), (2, 'Masters'), (3, 'Doctorate'), (4, 'Not Applicable')
+
+Create table Employer(
+
+EMPID int primary key,
+EMP_NAME varchar(255);
+
+insert into employer
+values (1, 'Kate Farms'), (2, 'Emonics LLC"'
+
+
+create table Employer_Location(
+City varchar(255),
+State varchar(255),
+EMPID int foregin key references Employer(EMPID));
+
+
+
+
+
+
+Create table JobPostings(
+
+JobID int primary key,
+Education_Level varchar(255) FOREIGN KEY REFERENCES Education(Education_Level),
+Salary float,
+Industry_Name varchar(255) Foreign key references Industry(Industry_Name),
+Job_Function varchar(255) Foreign key references Job_Title(Job_Function),
+Appointment_Name varchar(255) Foreign key references Appointment_Type(Appointment_Name),
+Job_Level_Name varchar(255)) Foreign key references Job_Level(Job_Level_Name),
+Appointment_Name varchar(255) Foreign key references Appointment_Type(Appointment_Name),
+EmployerName varchar(255) Foreign key references Employer(EmployerName).
+SkillID int foreign key references Skills(SkillID));
+
+Create table Salary(
+Salary_num float,
+JobID int foreighn key references JobPostings(JOBPostings));
+
+
+
